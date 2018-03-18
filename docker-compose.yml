@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+
+  fluentd:
+    container_name: test_fluentd
+    restart: always
+    image: fluent/fluentd:v1.1.1-onbuild
+    volumes:
+      - $PWD:/fluentd/etc
+    ports:
+      - "24224:24224"
+    networks:
+      - test_net
+
+  app:
+    restart: always
+    build: .
+    ports:
+      - "4000:8080"
+    networks:
+        - test_net
+    depends_on:
+      - fluentd
+    environment:
+      - DEBUG
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: "localhost:24224"
+        fluentd-async-connect: "true"
+        tag: docker
+
+networks:
+  test_net:
+    driver: bridge
