@@ -7,13 +7,15 @@ Docker logging with docker fluentd logger settings, fluentd writes messages to t
 *Goal: you don't need to add fluent dependency to your code,* just logging to standard output.
 You can route your log messages with _dest: journal_ key, and it will be saved to journal database, any others will be saved to the log database.
 
-Start with ```docker-compose up -d --build```
+* mvn clean install
 
-Log some message with ```http://localhost:4000/greeting```
+* Start with ```docker-compose up -d --build```
 
-Tail fluentd log with ```docker logs --follow test_fluentd```
+* Log some message with ```http://localhost:4000/greeting```
 
-Stop with ```CTRL-C``` and ```docker-compose down --remove-orphans```
+* Tail fluentd log with ```docker logs --follow test_fluentd```
+
+* Stop with ```CTRL-C``` and ```docker-compose down --remove-orphans```
 
 When you logging with _dest_ key with _journal_ value, then output wil be saved into the journal DB.
 
