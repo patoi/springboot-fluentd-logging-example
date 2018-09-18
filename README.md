@@ -11,7 +11,7 @@ You can route your log messages with _dest: journal_ key, and it will be saved t
 
 * Start with ```docker-compose up -d --build```
 
-* Log some message with ```http://localhost:4000/greeting```
+* Log some message with ```curl -X GET http://localhost:4000/greeting```
 
 * Tail fluentd log with ```docker logs --follow test_fluentd```
 
